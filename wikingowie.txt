@@ -1,6 +1,6 @@
 ZADANIE 1
 
-CREATE TABLE postac(id_postaci INT AUTO_INCREMENT NOT NULL, nazwa VARCHAR(20), rodzaj ENUM('wiking', 'ptak', 'kobieta'), data_ur DATE, wiek INT UNSIGNED, PRIMARY KEY (id_postaci);
+CREATE TABLE postac(id_postaci INT AUTO_INCREMENT NOT NULL, nazwa VARCHAR(40), rodzaj ENUM('wiking', 'ptak', 'kobieta'), data_ur DATE, wiek INT UNSIGNED, PRIMARY KEY (id_postaci);
 
 INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Bjorn', 'wiking', '999-06-27', 1025);
 

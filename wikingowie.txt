@@ -2,7 +2,7 @@ ZADANIE 1
 
 CREATE TABLE postac(id_postaci INT AUTO_INCREMENT NOT NULL, nazwa VARCHAR(40), rodzaj ENUM('wiking', 'ptak', 'kobieta'), data_ur DATE, wiek INT UNSIGNED, PRIMARY KEY (id_postaci);
 
-INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Bjorn', 'wiking', '999-06-27', 1025);
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Bjorn', 'wiking', '1745-06-27', 169);
 
 INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Drozd', 'ptak', '2024-10-01', 2);
 
@@ -38,11 +38,11 @@ INSERT INTO przetwory(id_przetworu, id_wykonawcy, id_konsumenta, zawartosc) VALU
 
 ZADANIE 5
 
-INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Eustachy', 'wiking', '1000-04-26', 1025), ('Zbyszek', 'wiking', '997-02-03', 1027), ('Stefan', 'wiking', '994-10-23', 1030), ('Gienek', 'wiking', '1002-12-26', 1022), ('Mieciu', 'wiking', '964-11-16', 1060)
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Eustachy', 'wiking', '2000-04-26', 25), ('Zbyszek', 'wiking', '1997-02-03', 27), ('Stefan', 'wiking', '1994-10-23', 30), ('Gienek', 'wiking', '2002-12-26', 22), ('Mieciu', 'wiking', '1964-11-16', 60)
 
 CREATE TABLE statek(nazwa_statku INT NOT NULL AUTO_INCREMENT, rodzaj_statku ENUM('duzy', 'maly'), data_wodowania DATE, max_ladownosc INT UNSIGNED, PRIMARY KEY(nazwa_statku));
 
-INSERT INTO statek(rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('duzy', '1010-10-13', 20000), ('duzy', '1069-02-21', 25000);
+INSERT INTO statek(rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('duzy', '2010-10-13', 20000), ('duzy', '2069-02-21', 25000);
 
 ALTER TABLE postac ADD funkcja VARCHAR(100);
 

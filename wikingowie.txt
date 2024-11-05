@@ -1,0 +1,51 @@
+ZADANIE 1
+
+CREATE TABLE postac(id_postaci INT AUTO_INCREMENT NOT NULL, nazwa VARCHAR(20), rodzaj ENUM('wiking', 'ptak', 'kobieta'), data_ur DATE, wiek INT UNSIGNED, PRIMARY KEY (id_postaci);
+
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Bjorn', 'wiking', '999-06-27', 1025);
+
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Drozd', 'ptak', '2024-10-01', 2);
+
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek)  VALUES ('Tesciowa', 'kobieta', '1969-10-10', 999);
+
+UPDATE postac SET wiek = 88 WHERE nazwa='Tesciowa';
+
+
+ZADANIE 2 
+
+CREATE TABLE walizka (id_walizki INT AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM('rozowy', 'czerwony', 'teczowy', 'zolty'),  id_wlasciciela INT NOT NULL, PRIMARY KEY (id_walizki),FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE)
+
+ALTER TABLE walizka MODIFY COLUMN kolor ENUM('rozowy', 'czerwony', 'teczowy', 'zolty') DEFAULT 'rozowy'
+
+INSERT INTO walizka(pojemnosc, kolor, id_wlasciciela) VALUES(211, 'czerwony', 1);
+
+
+ZADANIE 3
+
+CREATE TABLE izba(adres_budynku VARCHAR(100), nazwa_izby VARCHAR(50), metraz INT UNSIGNED, wlasciciel INT, CONSTRAINT pk_izba PRIMARY KEY(adres_budynku, nazwa_izby), CONSTRAINT fk_wlasciciel FOREIGN KEY(wlasciciel) REFERENCES postac(id_postaci) ON DELETE SET NULL);
+
+ALTER TABLE izba ADD kolor VARCHAR(20) DEFAULT 'czarny'  AFTER metraz;
+
+
+ZADANIE 4
+
+CREATE TABLE przetwory(id_przetworu INT NOT NULL, rok_produkcji SMALLINT UNSIGNED  DEFAULT 1654, id_wykonawcy INT NOT NULL, zawartosc VARCHAR(50), dodatek VARCHAR(50) DEFAULT 'papryczka chilli', id_konsumenta INT NOT NULL, PRIMARY KEY(id_przetworu), CONSTRAINT fk_id_wykonawcy FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci));
+
+ALTER TABLE przetwory ADD CONSTRAINT fk_id_konsumenta FOREIGN KEY(id_konsumenta) REFERENCES postac(id_postaci);
+
+INSERT INTO przetwory(id_przetworu, id_wykonawcy, id_konsumenta, zawartosc) VALUES (1, 1, 1, 'bigos');
+
+
+ZADANIE 5
+
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Eustachy', 'wiking', '1000-04-26', 1025), ('Zbyszek', 'wiking', '997-02-03', 1027), ('Stefan', 'wiking', '994-10-23', 1030), ('Gienek', 'wiking', '1002-12-26', 1022), ('Mieciu', 'wiking', '964-11-16', 1060)
+
+CREATE TABLE statek(nazwa_statku INT NOT NULL AUTO_INCREMENT, rodzaj_statku ENUM('duzy', 'maly'), data_wodowania DATE, max_ladownosc INT UNSIGNED, PRIMARY KEY(nazwa_statku));
+
+INSERT INTO statek(rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('duzy', '1010-10-13', 20000), ('duzy', '1069-02-21', 25000);
+
+ALTER TABLE postac ADD funkcja VARCHAR(100);
+
+UPDATE postac SET funkcja = 'kapitan' WHERE nazwa = 'Bjorn';
+
+DROP TABLE izba;

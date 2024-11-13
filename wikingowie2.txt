@@ -1,0 +1,43 @@
+Zad 1 
+
+delete from postac where nazwa = 'Mieciu';
+delete from postac where nazwa = 'Stefan';
+alter table walizka drop constraint walizka_ibfk_1;
+alter table przetwory drop constraint fk_id_wykonawcy;
+alter table przetwory drop constraint fk_id_konsumenta;
+alter table postac modify id_postaci int not null;
+alter table postac drop primary key;
+
+
+
+zad 2 
+
+alter table postac add pesel varchar(11) not null;
+alter table postac modify column rodzaj enum('wiking', 'ptak', 'kobieta', 'syrena');
+alter table postac add primary key(pesel);
+
+
+zad 3
+
+update postac set funkcja = 'majtek' where nazwa like '%a%';
+select * from postac where wiek <= 1000;
+
+
+zad 4 
+
+insert into postac (id_postaci, nazwa, data_ur, wiek,pesel) values (8,'Loko',2020-03-12, 4,74538473953);
+create table marynarz (id_postaci int not null, nazwa varchar(30), rodzaj enum('wiking', 'kobieta', 'syrena', 'ptak'), data_ur date, wiek int, funkcja enum('kapitan', 'majtek'), pesel varchar(11));
+insert into marynarz(id_postaci,nazwa, rodzaj, data_ur, wiek, funkcja, pesel) values (1,'Bjorn', 'wiking','196
+9-03-20', 169, 'kapitan', '73526728561') ,(4, 'Eustachy' , 'wiking', '2000-04-26', 25, 'majtek','09754738263'), (7, 'Gienek', 'wiking', '2002-12-26', 22,'majtek','23645826348'), (6, 'Gertruda Nieszczera' , 'syrena', '1980-10-10', 44,
+'majtek','21156943576');
+
+zad 5
+
+delete from postac where id_postaci = 7;
+delete from marynarz where id_postaci = 7;
+delete from statek where rodzaj_statku = 'duzy';
+drop table statek;
+
+create table zwierz (id int auto_increment, nazwa varchar(20), wiek int, primary key(id));
+insert into zwierz (nazwa, wiek) values ('Drozd', 17);
+

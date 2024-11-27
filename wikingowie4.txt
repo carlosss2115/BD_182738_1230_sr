@@ -1,0 +1,32 @@
+zad1
+
+select avg(waga) as srednia_waga  from kreatura where rodzaj = 'wiking';
+select avg(waga) as srednia_waga, count(*), rodzaj from kreatura group by rodzaj;
+select AVG(TIMESTAMPDIFF(YEAR, dataUr, curdate())) as sredni_wiek , rodzaj from kreatura group by rodzaj;
+
+
+zad 2 
+
+select rodzaj, sum(waga) as waga_calkowita from zasob group by rodzaj;
+select nazwa, avg(waga) as srednia_waga from zasob where ilosc >= 4 group by nazwa having sum(waga) > 10;
+select distinct(nazwa) from zasob group by nazwa having sum(ilosc) > 1;
+
+
+zad 3 
+
+select nazwa, sum(ilosc)  from kreatura inner join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury group by nazwa;
+select kreatura.nazwa, zasob.nazwa from kreatura  inner join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury inner join zasob on ekwipunek.idZasobu = zasob.idZasobu;
+select nazwa from kreatura  left join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury where idEkwipunku is null;
+
+
+zad 4 
+select kreatura.nazwa, zasob.nazwa from kreatura inner join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury inner join zasob on ekwipunek.idZasobu = zasob.idZasobu where kreatura.rodzaj = 'wiking' and year(dataUr) BETWEEN '1670'AND '1679';
+select kreatura.nazwa, zasob.nazwa, zasob.rodzaj  from kreatura  inner join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury inner join zasob on ekwipunek.idZasobu = zasob.idZasobu where zasob.rodzaj = 'jedzenie' order by year(dataUr) asc  limit 5;
+select t1.nazwa as kreatura1,t1.idKreatury, t2.nazwa as kreatura2,t2.idKreatury from kreatura t1 join kreatura
+ t2 on t1.idKreatury = t2.idKreatury + 5;
+
+
+zad 5 
+ select k.rodzaj, avg(z.waga) as srednia_waga  from ekwipunek as e inner join kreatura as k on e.idKreatury=k.idKreatury inner join zasob as z on e.idZasobu = z.idZasobu where k.rodzaj not like 'malpa' and k.rodzaj not like 'waz' and e.ilosc < 30 group by k.rodzaj;
+
+

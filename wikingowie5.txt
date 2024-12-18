@@ -1,0 +1,33 @@
+zad1.
+insert into kreatura select * from wikingowie.kreatura;
+create table uczestnicy as select * from wikingowie.uczestnicy;
+create table sektor as select * from wikingowie.sektor;
+create table etapy_wyprawy as select * from wikingowie.etapy_wyprawy;
+create table wyprawa as select * from wikingowie.wyprawa;
+
+select kreatura.nazwa from uczestnicy right join kreatura on uczestnicy.id_uczestnika = kreatura.idKreatury wh
+ere id_uczestnika is null;
+
+ select distinct(wyprawa.nazwa), sum(ekwipunek.ilosc) as suma from uczestnicy right join kreatura on uczestnicy.id_uczestnika = kreatura.idKreatury  inner join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury inner join wypr
+awa on uczestnicy.id_wyprawy = wyprawa.id_wyprawy where id_uczestnika is not null group by wyprawa.nazwa;
+
+zad 2
+
+select concat(wyprawa.nazwa, sum(uczestnicy.id_uczestnika), kreatura.nazwa) from wyprawa inner join uczestnicy
+ on wyprawa.id_wyprawy = uczestnicy.id_wyprawy inner join kreatura on uczestnicy.id_uczestnika = kreatura.idKreatury
+group by wyprawa.nazwa, kreatura.nazwa;
+
+
+ select wyprawa.nazwa, sektor.nazwa , etapy_wyprawy.dziennik, kreatura.nazwa from etapy_wyprawy inner join sektor on etapy_wyprawy.sektor = sektor.id_sektora inner join wyprawa on etapy_wyprawy.idWyprawy = wyprawa.id_wyprawy inner
+join kreatura on wyprawa.kierownik = kreatura.idKreatury order by wyprawa.data_rozpoczecia , etapy_wyprawy.kolejnosc;
+
+zad 3
+
+ select sektor.nazwa, ifnull(count(*), 0)  as ilosc from sektor inner join etapy_wyprawy on sektor.id_sektora =
+ etapy_wyprawy.sektor group by sektor.nazwa;
+
+select distinct(kreatura.nazwa), case when id_uczestnika is null then "nie bral udzialu w wyprawie" else "bral udzial w wyprawie" end  from uczestnicy right join kreatura on uczestnicy.id_uczestnika = kreatura.idKreatury;
+
+
+zad 4 
+

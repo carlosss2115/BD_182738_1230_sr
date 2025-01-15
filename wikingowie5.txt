@@ -31,3 +31,11 @@ select distinct(kreatura.nazwa), case when id_uczestnika is null then "nie bral 
 
 zad 4 
 
+select wyprawa.nazwa, sum(length(etapy_wyprawy.dziennik)) from wyprawa inner join etapy_wyprawy on wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy group by wyprawa.nazwa having sum(length(etapy_wyprawy.dziennik)) < 400;
+
+select  wyprawa.nazwa, sum(zasob.waga * zasob.ilosc)/ count(uczestnicy.id_uczestnika) from wyprawa inner join uczestnicy on wyprawa.id_wyprawy = uczestnicy.id_wyprawy inner join kreatura on uczestnicy.id_uczestnika = kreatura.idKreatury inner join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury inner join zasob on ekwipunek.idZasobu = zasob.idZasobu group by wyprawa.nazwa;
+
+
+zad 5 
+
+select distinct kreatura.nazwa, timestampdiff(day, kreatura.dataUr, wyprawa.data_rozpoczecia) as dni from kreatura inner join uczestnicy on kreatura.idKreatury = uczestnicy.id_uczestnika inner join wyprawa on uczestnicy.id_wyprawy = wyprawa.id_wyprawy inner join etapy_wyprawy on wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy inner join sektor on etapy_wyprawy.sektor = sektor.id_sektora where etapy_wyprawy.sektor = 7;
